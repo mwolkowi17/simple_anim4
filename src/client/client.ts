@@ -26,6 +26,10 @@ document.body.appendChild(renderer.domElement)
 const controls1 = new Controls1(camera1.camera, renderer.domElement)
 export const pickableObjects: THREE.Mesh[] = []
 export let intersectedObject: THREE.Object3D | null
+export let modelReady = false
+export const animationActions: THREE.AnimationAction[] = []
+export let activeAction: THREE.AnimationAction
+export let lastAction: THREE.AnimationAction
 
 const loader1 = new Loader1()
 
@@ -75,6 +79,18 @@ function onDocumentMouseMove(event: MouseEvent) {
   
 }
 
+const setAction = (toAction: THREE.AnimationAction) => {
+    if (toAction != activeAction) {
+        lastAction = activeAction
+        activeAction = toAction
+        //lastAction.stop()
+        lastAction.fadeOut(1)
+        activeAction.reset()
+        activeAction.fadeIn(1)
+        activeAction.play()
+    }
+}
+
 const stats = Stats()
 document.body.appendChild(stats.dom)
 
@@ -85,7 +101,8 @@ function animate() {
 
     controls1.main.update()
 
-    if (loader1.mixer) loader1.mixer.update(clock.getDelta())
+    if (loader1.modelready2) loader1.mixer.update(clock.getDelta())
+    //if (loader1.modelready2) loader1.mixer2.update(clock.getDelta())
 
     render()
 

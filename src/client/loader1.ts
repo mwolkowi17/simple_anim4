@@ -1,16 +1,19 @@
 import * as THREE from 'three'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
-import { scene, pickableObjects, intersectedObject } from './client'
+import { scene, pickableObjects, intersectedObject, modelReady, animationActions, activeAction, lastAction } from './client'
 
 export class Loader1 {
     main: GLTFLoader
     mixer: any
+    mixer2: any
+    modelready2:any
     action: any
     action1: any
     action2: any
     action3: any
     action4: any
     action5: any
+    animationaction: any
     ifplayed: boolean
     ifplayed1: boolean
     ifplayed2: boolean
@@ -27,7 +30,7 @@ export class Loader1 {
         this.ifplayed3 = false;
         this.ifplayed4 = false;
         this.ifplayed5 = false;
-        this.main.load('models/deform1.gltf', (gltf) => {
+        this.main.load('models/deform2.gltf', (gltf) => {
             gltf.scene.position.set(0, 1, 0)
             gltf.scene.rotation.set(Math.PI / 2.2, 0, 0)
             this.mixer = new THREE.AnimationMixer(gltf.scene)
@@ -37,6 +40,11 @@ export class Loader1 {
             this.action3 = this.mixer.clipAction(gltf.animations[3])
             this.action4 = this.mixer.clipAction(gltf.animations[4])
             this.action5 = this.mixer.clipAction(gltf.animations[5])
+            //this.action.play()
+            animationActions.push(this.action)
+            //animationActions[0].play()
+
+
             gltf.scene.traverse(function (child) {
                 if ((child as THREE.Mesh).isMesh) {
                     const m = child as THREE.Mesh
@@ -47,18 +55,40 @@ export class Loader1 {
                 }
             })
             scene.add(gltf.scene)
+            this.main.load(
+                'models/deform1.gltf',
+                (gltf2) => {
+                   //this.mixer2 = new THREE.AnimationMixer(gltf.scene)
+                    console.log('loaded number2');
+                    //(gltf as any).animations[0].tracks.shift()
+
+
+                    this.animationaction = this.mixer.clipAction(
+                        gltf2.animations[0]
+                    )
+                    animationActions.push(this.animationaction)
+                    // animationsFolder.add(animations, 'samba')
+                    this.modelready2=true
+                    animationActions[1].play()
+                }
+            )
         })
     }
 
     play1() {
         if (!this.ifplayed) {
-            this.action.play()
-            this.ifplayed = true
-            setTimeout(() => {
-                this.action.stop();
-                this.ifplayed = false
-            }, 4000);
-          
+            animationActions[0].fadeOut(1)
+            animationActions[1].reset()
+            animationActions[1].fadeIn(1)
+            animationActions[1].play()
+            console.log( animationActions[1])
+
+            // this.ifplayed = true
+            // setTimeout(() => {
+            //     //this.action.stop();
+            //     this.ifplayed = false
+            // }, 4000);
+
         }
 
     }
