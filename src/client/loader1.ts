@@ -83,9 +83,9 @@ export class Loader1 {
 
     play1() {
         if (!this.ifplayed) {
-            
-            animationActions[0].fadeOut(1)
-            this.mixer.setTime(1)
+            this.ifaction =true
+            animationActions[0].fadeOut(4)
+            this.mixer.setTime(2)
             animationActions[0].fadeIn(1)
             animationActions[0].play()
             //animationActions[1].reset()
@@ -93,13 +93,13 @@ export class Loader1 {
            // animationActions[1].play()
            // console.log( animationActions[1])
             //animationActions[0].play()
-            this.ifaction =true
+            
              this.ifplayed = true
             setTimeout(() => {
                 //this.action.stop();
                 this.ifplayed = false
                 this.ifaction =false
-            }, 2000);
+            }, 4000);
 
         }
 
