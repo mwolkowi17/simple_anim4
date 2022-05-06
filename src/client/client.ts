@@ -109,7 +109,7 @@ function animate() {
         //     console.log('time')
         // }
         //console.log(loader1.mixer.time)
-        if(loader1.mixer.time>2){
+        if(loader1.mixer.time>2&&loader1.ifaction===false){
             loader1.mixer.setTime(0)
         }
     }
