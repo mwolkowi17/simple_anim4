@@ -56,27 +56,27 @@ function onDocumentMouseMove(event: MouseEvent) {
     intersects = raycaster.intersectObjects(pickableObjects, false)
 
     if (intersects.length > 0) {
-        if( intersects[0].object===pickableObjects[0]){
+        if (intersects[0].object === pickableObjects[0]) {
             loader1.play1()
         }
-        if( intersects[0].object===pickableObjects[1]){
+        if (intersects[0].object === pickableObjects[1]) {
             loader1.play2()
         }
-        if( intersects[0].object===pickableObjects[2]){
+        if (intersects[0].object === pickableObjects[2]) {
             loader1.play3()
         }
-        if( intersects[0].object===pickableObjects[3]){
+        if (intersects[0].object === pickableObjects[3]) {
             loader1.play4()
         }
-        if( intersects[0].object===pickableObjects[4]){
+        if (intersects[0].object === pickableObjects[4]) {
             loader1.play5()
         }
-        if( intersects[0].object===pickableObjects[5]){
+        if (intersects[0].object === pickableObjects[5]) {
             loader1.play6()
         }
-         
-    } 
-  
+
+    }
+
 }
 
 const setAction = (toAction: THREE.AnimationAction) => {
@@ -101,9 +101,18 @@ function animate() {
 
     controls1.main.update()
 
-    if (loader1.modelready2) loader1.mixer.update(clock.getDelta())
-    //if (loader1.modelready2) loader1.mixer2.update(clock.getDelta())
-
+    if (loader1.modelready2) {
+        loader1.mixer.update(clock.getDelta())
+        //if (loader1.modelready2) loader1.mixer2.update(clock.getDelta())
+        // if (loader1.mixer.time === 0) {
+        //     //loader1.mixer.setTime(0)
+        //     console.log('time')
+        // }
+        //console.log(loader1.mixer.time)
+        if(loader1.mixer.time>2){
+            loader1.mixer.setTime(0)
+        }
+    }
     render()
 
     stats.update()

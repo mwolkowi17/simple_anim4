@@ -4,7 +4,7 @@ import { scene, pickableObjects, intersectedObject, modelReady, animationActions
 
 export class Loader1 {
     main: GLTFLoader
-    mixer: any
+    mixer: THREE.AnimationMixer
     mixer2: any
     modelready2:any
     action: any
@@ -30,6 +30,7 @@ export class Loader1 {
         this.ifplayed3 = false;
         this.ifplayed4 = false;
         this.ifplayed5 = false;
+        this.mixer = new THREE.AnimationMixer(scene)
         this.main.load('models/deform2.gltf', (gltf) => {
             gltf.scene.position.set(0, 1, 0)
             gltf.scene.rotation.set(Math.PI / 2.2, 0, 0)
@@ -42,7 +43,10 @@ export class Loader1 {
             this.action5 = this.mixer.clipAction(gltf.animations[5])
             //this.action.play()
             animationActions.push(this.action)
-            //animationActions[0].play()
+            animationActions[0].play()
+            
+           
+
 
 
             gltf.scene.traverse(function (child) {
@@ -62,14 +66,14 @@ export class Loader1 {
                     console.log('loaded number2');
                     //(gltf as any).animations[0].tracks.shift()
 
-
+                   // this.mixer = new THREE.AnimationMixer(gltf2.scene)
                     this.animationaction = this.mixer.clipAction(
                         gltf2.animations[0]
                     )
                     animationActions.push(this.animationaction)
                     // animationsFolder.add(animations, 'samba')
                     this.modelready2=true
-                    animationActions[1].play()
+                    //animationActions[1].play()
                 }
             )
         })
@@ -77,17 +81,22 @@ export class Loader1 {
 
     play1() {
         if (!this.ifplayed) {
+            
             animationActions[0].fadeOut(1)
-            animationActions[1].reset()
-            animationActions[1].fadeIn(1)
-            animationActions[1].play()
-            console.log( animationActions[1])
+            this.mixer.setTime(2)
+            animationActions[0].fadeIn(1)
+            animationActions[0].play()
+            //animationActions[1].reset()
+           // animationActions[1].fadeIn(1)
+           // animationActions[1].play()
+           // console.log( animationActions[1])
+            //animationActions[0].play()
 
-            // this.ifplayed = true
-            // setTimeout(() => {
-            //     //this.action.stop();
-            //     this.ifplayed = false
-            // }, 4000);
+             this.ifplayed = true
+            setTimeout(() => {
+                //this.action.stop();
+                this.ifplayed = false
+            }, 4000);
 
         }
 
