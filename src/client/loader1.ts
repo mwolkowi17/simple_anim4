@@ -83,11 +83,17 @@ export class Loader1 {
 
     play1() {
         if (!this.ifplayed) {
+            const restime=this.mixer.time
+            console.log('hoooop'+restime)
             this.ifaction =true
-            animationActions[0].fadeOut(4)
-            this.mixer.setTime(2)// on ustawia to przed zakończeniem fadu, potrzebny jest jakiś callback
-            animationActions[0].fadeIn(1)
-            animationActions[0].play()
+            //animationActions[0].fadeOut(2)
+            if(this.mixer.time>3.9){
+                this.mixer.setTime(4)
+            }
+            
+            //this.mixer.setTime(4)// on ustawia to przed zakończeniem fadu, potrzebny jest jakiś callback
+            //animationActions[0].fadeIn(1)
+            //animationActions[0].play()
             //animationActions[1].reset()
            // animationActions[1].fadeIn(1)
            // animationActions[1].play()
@@ -99,7 +105,7 @@ export class Loader1 {
                 //this.action.stop();
                 this.ifplayed = false
                 this.ifaction =false
-            }, 4000);
+            },restime*1000+4000);
 
         }
 
