@@ -85,7 +85,7 @@ export class Loader1 {
         if (!this.ifplayed) {
             this.ifaction =true
             animationActions[0].fadeOut(4)
-            this.mixer.setTime(2)
+            this.mixer.setTime(2)// on ustawia to przed zakończeniem fadu, potrzebny jest jakiś callback
             animationActions[0].fadeIn(1)
             animationActions[0].play()
             //animationActions[1].reset()
