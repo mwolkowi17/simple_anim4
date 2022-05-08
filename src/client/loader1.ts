@@ -101,15 +101,15 @@ export class Loader1 {
             //animationActions[0].play()
             
              this.ifplayed = true
-             if(this.mixer.time>(restime+3.9)){
+            //  if(this.mixer.time>(restime+4)){
+            //     this.ifplayed = false
+            //     this.ifaction = false
+            //  }
+            setTimeout(() => {
+                //this.action.stop();
                 this.ifplayed = false
                 this.ifaction =false
-             }
-            // setTimeout(() => {
-            //     //this.action.stop();
-            //     this.ifplayed = false
-            //     this.ifaction =false
-            // },restime*1000+4000);
+            },restime*1000+4000);
 
         }
 
