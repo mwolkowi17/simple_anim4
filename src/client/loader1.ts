@@ -87,7 +87,7 @@ export class Loader1 {
             console.log('hoooop'+restime)
             this.ifaction =true
             //animationActions[0].fadeOut(2)
-            if(this.mixer.time>3.9){
+            if(this.mixer.time>3.99){
                 this.mixer.setTime(4)
             }
             
@@ -101,11 +101,15 @@ export class Loader1 {
             //animationActions[0].play()
             
              this.ifplayed = true
-            setTimeout(() => {
-                //this.action.stop();
+             if(this.mixer.time>(restime+3.9)){
                 this.ifplayed = false
                 this.ifaction =false
-            },restime*1000+4000);
+             }
+            // setTimeout(() => {
+            //     //this.action.stop();
+            //     this.ifplayed = false
+            //     this.ifaction =false
+            // },restime*1000+4000);
 
         }
 
