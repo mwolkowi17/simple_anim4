@@ -6,7 +6,7 @@ export class Loader1 {
     main: GLTFLoader
     mixer: THREE.AnimationMixer
     mixer2: any
-    modelready2:any
+    modelready2: any
     action: any
     action1: any
     action2: any
@@ -20,7 +20,7 @@ export class Loader1 {
     ifplayed3: boolean
     ifplayed4: boolean
     ifplayed5: boolean
-    ifaction:boolean
+    ifaction: boolean
 
 
     constructor() {
@@ -46,8 +46,8 @@ export class Loader1 {
             //this.action.play()
             animationActions.push(this.action)
             animationActions[0].play()
-            
-           
+
+
 
 
 
@@ -64,17 +64,17 @@ export class Loader1 {
             this.main.load(
                 'models/deform1.gltf',
                 (gltf2) => {
-                   //this.mixer2 = new THREE.AnimationMixer(gltf.scene)
+                    //this.mixer2 = new THREE.AnimationMixer(gltf.scene)
                     console.log('loaded number2');
                     //(gltf as any).animations[0].tracks.shift()
 
-                   // this.mixer = new THREE.AnimationMixer(gltf2.scene)
+                    // this.mixer = new THREE.AnimationMixer(gltf2.scene)
                     this.animationaction = this.mixer.clipAction(
                         gltf2.animations[0]
                     )
                     animationActions.push(this.animationaction)
                     // animationsFolder.add(animations, 'samba')
-                    this.modelready2=true
+                    this.modelready2 = true
                     //animationActions[1].play()
                 }
             )
@@ -83,33 +83,37 @@ export class Loader1 {
 
     play1() {
         if (!this.ifplayed) {
-            const restime=this.mixer.time
-            console.log('hoooop'+restime)
-            this.ifaction =true
+            const restime = this.mixer.time
+            console.log('hoooop' + restime)
+            this.ifaction = true
             //animationActions[0].fadeOut(2)
-            if(this.mixer.time>3.99){
+            if (this.mixer.time > 3.99) {
                 this.mixer.setTime(4)
             }
-            
+
             //this.mixer.setTime(4)// on ustawia to przed zakończeniem fadu, potrzebny jest jakiś callback
             //animationActions[0].fadeIn(1)
             //animationActions[0].play()
             //animationActions[1].reset()
-           // animationActions[1].fadeIn(1)
-           // animationActions[1].play()
-           // console.log( animationActions[1])
+            // animationActions[1].fadeIn(1)
+            // animationActions[1].play()
+            // console.log( animationActions[1])
             //animationActions[0].play()
-            
-             this.ifplayed = true
+
+            this.ifplayed = true
             //  if(this.mixer.time>(restime+4)){
             //     this.ifplayed = false
             //     this.ifaction = false
             //  }
             setTimeout(() => {
                 //this.action.stop();
-                this.ifplayed = false
-                this.ifaction =false
-            },restime*1000+4000);
+                // this.ifplayed = false
+                // this.ifaction =false
+                if (this.mixer.time > ((4-restime) + 4)) {
+                    this.ifplayed = false
+                    this.ifaction = false
+                }
+            },(4000-restime*1000)+4000);
 
         }
 
