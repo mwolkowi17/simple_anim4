@@ -111,7 +111,7 @@ function animate() {
         //console.log(loader1.mixer.time)
         if(loader1.mixer.time>4&&loader1.ifaction===false){
             loader1.mixer.setTime(0)
-            console.log(loader1.mixer.time)
+            //console.log(loader1.mixer.time)
         }
         console.log(loader1.mixer.time)
     }

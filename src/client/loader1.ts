@@ -84,31 +84,17 @@ export class Loader1 {
     play1() {
         if (!this.ifplayed) {
             const restime = this.mixer.time
-            console.log('hoooop' + restime)
+            //console.log('hoooop' + restime)
             this.ifaction = true
-            //animationActions[0].fadeOut(2)
+            
             if (this.mixer.time > 3.99) {
                 this.mixer.setTime(4)
             }
 
-            //this.mixer.setTime(4)// on ustawia to przed zakończeniem fadu, potrzebny jest jakiś callback
-            //animationActions[0].fadeIn(1)
-            //animationActions[0].play()
-            //animationActions[1].reset()
-            // animationActions[1].fadeIn(1)
-            // animationActions[1].play()
-            // console.log( animationActions[1])
-            //animationActions[0].play()
-
             this.ifplayed = true
-            //  if(this.mixer.time>(restime+4)){
-            //     this.ifplayed = false
-            //     this.ifaction = false
-            //  }
+        
             setTimeout(() => {
-                //this.action.stop();
-                // this.ifplayed = false
-                // this.ifaction =false
+               
                 if (this.mixer.time > ((4-restime) + 4)) {
                     this.ifplayed = false
                     this.ifaction = false
