@@ -5,7 +5,12 @@ import { scene, pickableObjects, intersectedObject, modelReady, animationActions
 export class Loader1 {
     main: GLTFLoader
     mixer: THREE.AnimationMixer
-    mixer2: any
+    mixer1: THREE.AnimationMixer
+    mixer2: THREE.AnimationMixer
+    mixer3: THREE.AnimationMixer
+    mixer4: THREE.AnimationMixer
+    mixer5: THREE.AnimationMixer
+
     modelready2: any
     action: any
     action1: any
@@ -33,6 +38,11 @@ export class Loader1 {
         this.ifplayed5 = false;
         this.ifaction = false;
         this.mixer = new THREE.AnimationMixer(scene)
+        this.mixer1 = new THREE.AnimationMixer(scene)
+        this.mixer2 = new THREE.AnimationMixer(scene)
+        this.mixer3 = new THREE.AnimationMixer(scene)
+        this.mixer4 = new THREE.AnimationMixer(scene)
+        this.mixer5 = new THREE.AnimationMixer(scene)
         this.main.load('models/deform2.gltf', (gltf) => {
             gltf.scene.position.set(0, 1, 0)
             gltf.scene.rotation.set(Math.PI / 2.2, 0, 0)
